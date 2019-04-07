@@ -1,0 +1,42 @@
+1. 下载gulp  可以使用gulp指令
+全局安装gulp npm i gulp -g
+
+2. 本地安装gulp
+
+
+使用gulp插件
+1.下载
+2.引入
+3.调用
+
+1.gulp.task(任务名,()=>{})
+2.gulp.src(globs[,options]) 指定需要处理的源文件的路径
+3. gulp.dest(path[,options]) 指定处理完后文件输出的路径
+4. gulp.watch(globs)  监听变化
+5. gulp.parallel() 设置并行任务
+6. gulp.series() 设置顺序执行任务
+
+globs:需要处理的源文件匹配符路径
+
+
+
+1. gulp-uglify 压缩js
+2. gulp-sass 编译sass
+3. gulp-babel 编译js语法
+4. gulp-clean-css 压缩css
+5. gulp-htmlmin 压缩html
+6. gulp-rev 对文件名加MD5后缀
+7. gulp-rev-collector 替换路径
+
+3. babel 是用来编译下一代javascript标准
+npm i babel babel-core babel-cli -g
+
+babel 文件 -o 输出编译之后的文件
+给babel配置转码规则文件
+.babelrc  json
+
+{
+    "presets":匹配转码规则
+}
+
+

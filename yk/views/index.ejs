@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <section>
+            <h2>发票列表</h2>
+            <div>
+                <%data.map((item,i)=>{%>
+                    <dl>
+                        <dt>抬头 <%=item.title%> <span class="closebtn" index="<%=i%>">&times;</span></dt>
+                        <dd>
+                            <span><b>税号</b><%=item.number%></span>
+                            <span><b>地址</b><%=item.address%></span>
+                            <span><b>电话</b><%=item.tel%></span>
+                            <span><b>开户行</b><%=item.bank%></span>
+                            <span><b>开户账号</b><%=item.bankId%></span>
+                        </dd>
+                    </dl>
+                <%})%>
+            </div>
+        </section>
+        <footer>
+            <a href="/" class="active">公司列表</a>
+            <a href="/add.html" class="">新增公司</a>
+            <a href="/my.html" class="">个人中心</a>
+        </footer>
+    </div>
+    <script src="/js/axios.js"></script>
+    <script>
+        const closebtn = Array.from(document.querySelectorAll('.closebtn'),(el)=>{
+            el.onclick = function(){
+                let id = el.getAttribute('index')*1;
+                axios.get('/api/del?id='+id).then(res=>{
+                    let {code,msg} = res.data;
+                     if(code){
+                         window.location.reload();
+                     }else{
+                         alert(msg);
+                     }
+                })
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="javascript:history.back()">返回</a>
+            <h2 class="title">编辑地址</h2>
+            <span class="remove">删除</span>
+        </header>
+        <main class="main">
+           <label>联系人</label> <input type="text" id="user">
+           <div id="sex"><span class="active">先生</span><span>女士</span></div>
+           <label>电话</label> <input type="text" id="phone">
+           <label>地址</label> <input type="text" id="name">
+           <label>门牌号</label> <input type="text" id="address">
+           <div>
+               <button class="sure">确定</button>
+           </div>
+        </main>
+    </div>
+    <script src="./js/format.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/Init.js"></script>
+    <script>
+        const {id,type} = format(location.search);
+        new Init({
+            id,type
+        });
+        
+    </script>
+</body>
+</html>

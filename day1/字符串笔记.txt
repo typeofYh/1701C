@@ -1,0 +1,21 @@
+
+语法:StringObject.inculdes(str,startindex?); 数组也有
+功能：检测该字符串是否出现指定字符
+返回值:boolean
+
+
+语法:StringObject.repeat(count)
+功能:重复出现该字符串多少次
+返回值:新字符串
+
+
+语法:StringObject.endsWith(str,endindex+1?) startsWith(str,startindex?)
+功能:是否已这个字符结束
+返回值:boolean
+
+
+encodeURIComponent()
+编码
+
+decodeURIComponent()
+解码

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button>点击</button>
+    <!-- <img src="http://uploads.oh100.com/allimg/1709/117-1FZ5102542-52.jpg" alt=""> -->
+    <script>
+        
+        console.log(Object.is('1',1));
+
+        function ajax(options){
+            //type get   ''  ture
+            let defaults = {
+                type:'get',
+                url:'./',
+                async:true,
+                data:'',
+                error(){}
+            }
+            //{type:'post',url:'http',success(){},async:true,data:'',error(){}}
+            // let setings = {...defaults,...options};
+            let setings = assign({},defaults,options);
+            console.log(setings);
+           
+        }
+        function assign(obj,...arrObj){
+            arrObj.map(item=>{
+                Object.keys(item).forEach(key=>{
+                    obj[key] = item[key]
+                })
+            })
+            return obj;
+        }
+        ajax({
+            url:'http',
+            type:'post',
+            success(){
+
+            }
+        })
+        
+        function Fun(){
+
+        }
+        const o1 = new Fun();
+
+        console.log(o1.__proto__);
+        // console.log(Fun.prototype);
+
+        // console.log(o1.__proto__ === Fun.prototype)
+
+        console.log(Object.getPrototypeOf(o1) === o1.__proto__);
+
+        const btn = document.querySelector('button');
+        
+
+        // btn.onclick = function(){
+        //     setStyle(300,{
+        //         color:'red'
+        //     })
+        // }
+
+        // function setStyle(timer,style){
+        //     setTimeout(renderDom,timer)
+        // }
+
+        // function renderDom(){
+        //     ajax({
+        //         success:renderNewDom
+        //     })
+        // }
+        // function renderNewDom(data){
+        //     console.log(Data);
+        // }
+        const imageurl = 'http://uploads.oh100.com/allimg/1709/117-1FZ5102542-52.jpg';
+        const imageurl1 = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3207781657,3460758070&fm=26&gp=0.jpg';
+        function getImage(imageurl){
+            const Img = new Promise((resolve,reject)=>{
+                const imgObj = new Image(); //new Option()
+                imgObj.onload = ()=>{
+                    resolve(imgObj);
+                }
+                imgObj.onerror = ()=>{
+                    reject(new Error(`找不到图片,图片路径为：${imageurl}`));
+                }
+                imgObj.src = imageurl;
+            });
+            return Img;
+        }
+        getImage(imageurl).then(img=>{
+            document.body.appendChild(img);
+        })
+        getImage(imageurl1).then(img=>{
+            document.body.appendChild(img);
+        })
+
+
+
+
+
+        let timer = new Promise((resolve)=>{
+            setTimeout(resolve,1000)
+        })
+
+        timer.then(()=>{
+            alert(1111);
+        })
+    </script>
+</body>
+</html>

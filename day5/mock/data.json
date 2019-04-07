@@ -1,0 +1,12 @@
+{
+    "banner":[{
+        "title":"315打假",
+        "img":"./images/banner.png"
+    },{
+        "title":"316周六",
+        "img":"./images/banner.png"
+    },{
+        "title":"317周日",
+        "img":"./images/banner.png"
+    }]
+}

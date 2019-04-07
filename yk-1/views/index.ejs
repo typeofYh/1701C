@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <header><h2>收货页面</h2><a href="./edit.html?type=add">新增页面</a></header>
+        <main>
+            <div>
+               <%data.map(item=>{%> 
+               <dl>
+                   <h2><%=item.name%></h2>
+                   <p><%=item.address%></p>
+                   <p>
+                       <span><%=item.user%>(<%=item.sex?"女士":"先生"%>)</span>
+                       <span><%=item.phone%></span>
+                   </p>
+                   <a href="./edit.html?type=edit&id=<%=item.id%>">编辑</a>
+               </dl> 
+               <%})%>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

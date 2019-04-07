@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>找回密码</h3>
+    <div calss="box">
+        <input type="text" placeholder="请输入用户名" id="user">
+        <input type="text" placeholder="请输入验证码" class="reworld"> <button class="getcode">点击获取验证码</button>
+        <button class="findworld">点击找回密码</button>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const findworldBtn = document.querySelector('.findworld');
+        //点击找回密码
+        //1。判断验证码
+        const reworld = document.querySelector('.reworld');
+        //验证码按钮
+        const getCodeBtn = document.querySelector('.getcode');
+        findworldBtn.onclick = ()=>{
+            let reworldVal = reworld.value.trim();
+            if(reworldVal === ''){
+                alert('请输入验证码')
+                return;
+            }
+            axios.post('/api/checkuser',{
+                reworldVal,
+                user:user.value
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+
+        //点击获取验证码
+        getCodeBtn.onclick = ()=>{
+            axios.post('/api/getCode').then(res=>{
+                console.log(res);
+            })
+        }
+    </script>
+</body>
+</html>

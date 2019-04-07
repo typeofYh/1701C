@@ -1,0 +1,78 @@
+*{
+    padding:0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+dl{
+    display: flex;
+}
+dl dt{
+    width: 100px;
+    height: 100px;
+}
+dl dt img{
+    width: 100%;
+    height: 100%;
+}
+dl dd{
+    flex:1;
+    overflow: hidden;
+}
+
+body,html,.wrap{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.wrap{
+    display: flex;
+    flex-direction: column;
+}
+.wrap>.main{
+    flex:1;
+    overflow: hidden;
+}
+.header{
+    background: #fff;
+    z-index: 101;
+    position: relative;
+}
+.select{
+    position: absolute;
+    top:100%;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    display: none;
+}
+.select p{
+    padding: 10px 0;
+}
+.select p.active{
+    color:red;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 100;
+    display: none;
+}
+.main>div{
+    position: relative;
+}
+.main>div:after{
+    content: attr(downopen);
+    position: absolute;
+    top: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 100%;
+    color:#000;
+}

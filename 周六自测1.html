@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <ul>
+                <li key="1"></li>
+                <li key="2"></li>
+                <li key="3"></li>
+                <li key="4"></li>
+            </ul>
+<script>
+        let oUl = document.getElementsByTagName('ul')[0];
+        let li = document.getElementsByTagName('li');
+        //{map,forEach} = [].__proto__
+        //数组本身就是一个对象，原型上有map和forEach方法，所以可以从该对象中解构map和forEach
+        const {map,forEach} = []; //[].__proto__
+        //map本来是数组方法,li是一个类数组或对象不能直接调用map所以使用call修改this指向
+        li = map.call(li,item=>{
+            let key = 2 * item.getAttribute('key') - 1;
+            item.setAttribute('key',key);
+            return item;
+        });
+        oUl.innerHTML = '';
+        forEach.call(li,item=>{
+            oUl.appendChild(item);
+        })
+        
+
+        const car = [
+            {
+                groupName:'水果',
+                type:[
+                    {
+                        name:'苹果',
+                        price:10
+                    },
+                    {
+                        name:'橘子',
+                        price:40
+                    },
+                    {
+                        name:'香蕉',
+                        price:90
+                    }
+                ]
+            },
+            {
+                groupName:'蔬菜',
+                type:[
+                    {
+                        name:'芹菜',
+                        price:10
+                    },
+                    {
+                        name:'菠菜',
+                        price:15
+                    },
+                    {
+                        name:'土豆',
+                        price:8
+                    }
+                ]
+            }
+        ]
+
+        // 
+
+        function getPrice(arr){
+           let res = {
+                group:arr.map(item=>({
+                        typeName:item.groupName,
+                        price:item.type.reduce((prev,next)=>prev+next.price,0)
+                    }))
+            } 
+            res.allPrice = res.group.reduce((prev,next)=>prev+next.price,0);
+            return res;
+        }
+
+        console.log(getPrice(car));
+
+
+        function reduce(arr,ck,init){
+            // arr.forEach(item=>{
+            //     console.log(item);
+            // })
+            let prev = init!=undefined ? init : arr[0];
+            let i = init!=undefined ? 0 : 1;
+            for(;i<arr.length;i++){
+                prev = ck(prev,arr[i]);
+            }
+            
+            // sum = ck(sum,arr[2]);
+            // sum = ck(sum,arr[3]);
+            // sum = ck(sum,arr[4]);
+            // sum = ck(sum,arr[5]);
+            return prev;
+        }
+
+        console.log(reduce([{price:1},{price:2},{price:3}],(prev,next)=>{
+            return prev+next.price
+        },0));
+
+
+        // function a(ck){
+        //     console.log(ck(1,2));
+        // }
+        // a((p,n)=>{
+        //     return p+n;
+        //     // alert(111);
+        // })
+</script>        
+</body>
+</html>

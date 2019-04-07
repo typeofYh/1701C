@@ -1,0 +1,17 @@
+{
+  "name": "dome4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "page": "gulp -f=./page/gulpfile.js page"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.16.4",
+    "gulp": "^4.0.0",
+    "gulp-webserver": "^0.9.1"
+  }
+}

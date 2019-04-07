@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="username">请输入用户名</label>
+        <input type="text" placeholder="请输入用户名" id="username">
+        <label for="pwd">请输入密码</label>
+        <input type="password" placeholder="请输入密码" id="pwd">
+        <button type="button">登陆</button>
+    </form>
+    <script>
+    
+        // let arr = [[1,1,2],[1,[[3]],4]]
+
+        // console.log(arr.flat(Infinity));
+
+
+        // let arr1 = ['a','b','c','d','e','f','g'];
+
+        // arr1.copyWithin(5,0);
+
+
+        // for(let val of arr1){
+        //     console.log(val);
+        // }
+
+        // for(let v1 of '12112122'){
+        //     console.log(v1);
+        // }
+
+        // let obj = {name:'zs'};
+        // for(let v2 of Object.keys(obj)){
+        //     console.log(v2);
+        // }
+
+        // let set1 = new Set([1,2,3,2,2,23,1]);
+        // for(let v3 of set1){
+        //     console.log(v3);
+        // }
+
+        // let map1 = new Map();
+        // map1.set({presen:'zs'},{age:13})
+        // for(let v4 of map1){
+        //     console.log(v4);
+        // }
+
+        // let arr3 = [1,2,2,3,4,4];
+
+        // arr3.fill('1',3)
+
+
+        // function getArr(text,len){
+        //     return new Array(len).fill(text);
+        // }
+
+        // console.log(getArr('hello',10));
+        // console.log(getArr('1701C',15));
+
+        const data = [{
+            username:'zs',
+            pwd:'1234'
+        },{
+            username:'ww',
+            pwd:'5678'
+        }];
+
+        const form = document.forms[0];
+        const input = form.elements;
+        const btns = input[2];
+        btns.onclick = function(){
+            let user = {};
+            Array.from(input,(item)=>{
+                if(item.id){
+                    user[item.id] = item.value
+                }
+            })
+            // console.log(data.includes(user));
+            let res = data.findIndex((item)=>item.username === user.username && item.pwd === user.pwd);
+
+            if(res!==-1){
+                alert(`恭喜${data[res].username}登陆成功`)
+            }else{
+                alert(`您的用户名和密码输入有误`)
+            }
+        }
+
+
+        // let obj = {
+        //     0:'zs',
+        //     1:'ww',
+        //     length:2
+        // }
+
+        // let els = document.querySelectorAll('*');
+        
+        // console.log(Array.from(obj))
+        // console.log([...obj])
+
+        // console.log(Array.from(els))
+        // console.log([...els]);
+
+
+        let a = [1,2,3,4];
+
+        console.log(a.flatMap(item=>{
+            return [item+1]
+        }));
+
+
+        let s = Symbol('121212');
+
+        console.log(s);
+
+        
+    </script>
+</body>
+</html>

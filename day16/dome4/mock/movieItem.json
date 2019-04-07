@@ -1,0 +1,22 @@
+[
+    {
+        "name":"惊奇队长",
+        "id":0,
+        "movieroom":[1,0,2]
+    },
+    {
+        "name":"流浪地球",
+        "id":1,
+        "movieroom":[0,2]
+    },
+    {
+        "name":"悲伤",
+        "id":2,
+        "movieroom":[2]
+    },
+    {
+        "name":"蜘蛛侠",
+        "id":3,
+        "movieroom":[2,1]
+    }
+]

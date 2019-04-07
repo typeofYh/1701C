@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <select id="select" value="0">
+
+        </select>
+        <div id="list">
+
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        //1.获取影院
+        axios.get('/api/movieRoom').then(res=>{
+            renderMovieRoom(res.data);
+        })
+
+        function renderMovieRoom(data){
+            select.innerHTML = data.map((item,i)=>{
+                i===0 && change(item.id);
+                return `<option value=${item.id}>${item.movieRoom}</option>`
+            }).join('');
+        }
+
+        select.onchange = function(){
+            let id = this.value;
+            change(id);
+        }
+
+        let MovieRes = {};
+        function change(id){
+            //id影院id //根据影院id请求数据
+            if(MovieRes[id]){
+                renderList(MovieRes[id]);
+                return;
+            }
+            axios.get('/api/movieItem?id='+id).then(res=>{
+                MovieRes[id] = res.data;
+                renderList(res.data);
+            })
+           
+        }
+
+        function renderList(data){
+            list.innerHTML = data.map(item=>`<div>${item.name}<div>`).join('')
+        }
+        
+    </script>
+</body>
+</html>

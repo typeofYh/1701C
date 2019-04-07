@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <div class="wrap">
+        <header>头部</header>
+        <main>
+            <!--大类导航-->
+            <nav class="nav">
+                <% nav.map((item,i)=>{ %>
+                    <span navId="<%= item.id %>" class="<%= i===0?'active':'' %>">
+                        <%= item.title %>
+                    </span>
+                <% }) %>
+            </nav>
+            <section>
+                <!--小类导航-->
+                <nav class="smallnav"></nav>
+                <div class="smallcontent">
+                    <!--列表-->
+                    <ul>
+
+                    </ul>
+                </div>
+            </section>
+        </main>
+        <footer>footer</footer>
+    </div>
+    <script src="./scripts/axios.js"></script>
+    <!-- <script src="./scripts/index.js"></script> -->
+    <script src="./scripts/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "dome1",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "mockjs": "^1.0.1-beta3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

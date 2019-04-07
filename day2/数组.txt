@@ -1,0 +1,34 @@
+语法:Array.prototype.flat(count|Infinity) flatMap  map+flat
+功能:展开数组
+返回值：数组
+
+语法：Array.prototype.copyWithin(target,start?0,end+1?length) 
+功能:从start位置开始复制复制到end的位置，从target位置开始替换
+返回值：数组 并且修改原数组
+
+语法:Array.prototype.fill(要填充的内容,start?0,end?length)
+功能:从某个位置开始替换数组值
+返回值：数组会修改原数组
+
+Set ； 不允许出现重复值
+Map ： 所以类型的值都可以被当作键来使用
+新增数据结构
+
+
+for of es6新增的遍历方法 用来遍历 遍历器对象
+
+
+遍历器对象：
+
+
+语法:Array.prototype.find((item)=>{  兄弟 findIndex
+    item：数组每一项
+    当前函数的返回值只要出现true就返回item 
+    没有出现true返回undefined
+})
+功能:查找数组匹配项
+返回值：数组匹配项 或 undefined
+findIndex返回值为下标 -1代表没有出现 其它代表出现了
+
+
+

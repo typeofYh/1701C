@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <span class="btn">综合</span>
+            <span>销量</span>
+            <span>价格</span>
+            <span>帅选</span>
+            <div class="select">
+                <p class="active" data-tit="id">综合排序</p>
+                <p data-tit="publishTime">新品优先</p>
+                <p data-tit="createUserId">评论数</p>
+            </div>
+        </header>
+        <nav>
+
+        </nav>
+        <div class="mask"></div>
+        <div class="main">
+            <div downopen="上拉加载更多...">
+                <% data.map(item=>{ %>
+                    <dl>
+                        <dt>
+                            <img src="<%=item.imgPath%>" title="<%=item.imgTitle%>"/>
+                        </dt>
+                        <dd>
+                            <h2><%=item.smallTitle%></h2>
+                            <p><%=item.title%></p>
+                            <time><%=new Date(item.publishTime).toLocaleDateString()%></time><span>评论数:<%=item.createUserId%></span>
+                        </dd>
+                    </dl>
+                <% }) %>
+            </div>            
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/better-scroll@1.0.1/dist/bscroll.min.js"></script>
+    <script>
+        const select = document.querySelector('.select');
+        const mask = document.querySelector('.mask');
+        const selectItem = [...select.children];
+        const main = document.querySelector('.main>div');
+        const btn = document.querySelector('.btn');
+        let pageid = 0;
+        const BtterScroll = new BScroll('.main',{
+            probeType:2
+        });
+        selectItem.forEach(el=>{
+            el.onclick = function(){
+                let tit = el.getAttribute('data-tit');
+                selectItem.forEach(item=>item.className='');
+                el.className = 'active';
+                mask.style.display = 'none';
+                select.style.display = 'none';
+                axios.get('/api/sort?key='+tit).then(res=>{
+                    main.innerHTML = render(res.data.data);
+                    BtterScroll.refresh();
+                })
+            }
+        })
+        btn.onclick = function(){
+            mask.style.display = 'block';
+            select.style.display = 'block';
+        }
+        function render(arr){
+            return arr.map(item=>`
+                <dl>
+                    <dt>
+                        <img src="${item.imgPath}" title="${item.imgTitle}"/>
+                    </dt>
+                    <dd>
+                        <h2>${item.smallTitle}</h2>
+                        <p>${item.title}</p>
+                        <time>${new Date(item.publishTime).toLocaleDateString()}</time><span>评论数:${item.createUserId}</span>
+                    </dd>
+                </dl>
+            `).join('');
+        }
+        BtterScroll.on('scroll',function(){
+            //-500 -540
+            if(this.y + 40 < this.maxScrollY){ 
+                main.setAttribute('downopen','释放加载更多')
+            }else if(this.y + 20 < this.maxScrollY){
+                main.setAttribute('downopen','上拉加载更多...')
+            }
+        })
+        BtterScroll.on('touchEnd',function(){
+            if(main.getAttribute('downopen') === '释放加载更多'){
+                //发ajax
+                pageid++;
+                axios.get(`/api/page?pageid=${pageid}`).then(res=>{
+                    main.innerHTML += render(res.data.data);
+                    BtterScroll.refresh();
+                })
+            }
+        })
+    </script>
+</body>
+</html>

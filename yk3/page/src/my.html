@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+            <header>我的</header>
+            <main class="main">
+                <input type="text" placeholder="请输入用户名" id="user">
+                <input type="text" placeholder="请输入密码" id="pwd">
+                <button id="login">登陆</button>
+            </main>
+            <footer>
+                <a href="./group.html">社群</a>
+                <a href="./group.html">add</a>
+                <a href="./story.html">微故事</a>
+                <a href="./my.html" class="active">我的</a>
+            </footer>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        login.onclick = function(){
+            axios.post('/api/login',{
+                user:user.value,
+                pwd:pwd.value
+            }).then(res=>{
+                let {code,msg} = res.data;
+                if(code){
+                    window.localStorage.setItem('user',Date.now())
+                }else{
+                    alert(msg);
+                }
+            })
+        }
+        
+    </script>
+</body>
+</html>

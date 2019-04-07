@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <section>
+            <h2>新增公司</h2>
+            <div>
+                <form id="form">
+                    <p>
+                        <label for="title">公司名称</label>
+                        <input type="text" id="title">
+                    </p>
+                    <p>
+                        <label for="number">税号</label>
+                        <input type="text" id="number">
+                    </p>
+                    <p>
+                        <label for="address">地址</label>
+                        <input type="text" id="address">
+                    </p>
+                    <p>
+                        <label for="tel">电话</label>
+                        <input type="text" id="tel">
+                    </p>
+                    <p>
+                        <label for="bank">开户行</label>
+                        <input type="text" id="bank">
+                    </p>
+                    <p>
+                        <label for="bankId">开户账号</label>
+                        <input type="text" id="bankId">
+                    </p>
+                    <button type="button">提交</button>
+                </form>
+            </div>
+        </section>
+        <footer>
+            <a href="/" class="">公司列表</a>
+            <a href="/add.html" class="active">新增公司</a>
+            <a href="/my.html" class="">个人中心</a>
+        </footer>
+    </div>
+    <script src="./js/axios.js"></script>
+    <script>
+        //{}
+        const form = document.querySelector('#form');
+        const button = form.querySelector('button');
+        const inps = [...form.querySelectorAll('input')];
+        button.onclick = function(){
+            let obj = {};
+            let i = 0;
+            for(let el of inps){
+                if(el.value.trim()===''){
+                    alert('不能为空')
+                    break;
+                }else{
+                    i++;
+                    obj[el.id] = el.value;  
+                }
+            }
+            if(i===inps.length){ //可以提交了
+                axios.post('/api/addAddress',obj).then(res=>{
+                    let {code,msg} = res.data;
+                    if(code){
+                        window.location.href="/";
+                    }else{
+                        alert(msg);
+                    }
+                })
+            }
+
+        }
+    
+    </script>
+</body>
+
+</html>

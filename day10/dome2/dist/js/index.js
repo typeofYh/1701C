@@ -1,0 +1,1 @@
+"use strict";var util={reverse:function(){alert("reverse")}};util.reverse();

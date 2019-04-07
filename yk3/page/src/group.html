@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+            <header>创建社群</header>
+            <main class="main">
+                
+            </main>
+            <footer>
+                <a href="./group.html" class="active">社群</a>
+                <a href="./group.html" class="active">add</a>
+                <a href="./story.html">微故事</a>
+                <a href="./my.html">我的</a>
+            </footer>
+    </div>
+    <script>
+        let local = window.localStorage;
+        let user = local.getItem('user');
+        if(!user){
+            window.location.href="./my.html"
+        }
+
+    </script>
+</body>
+</html>

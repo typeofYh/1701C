@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./ajax.js"></script>
+    <script>
+        
+        ajax({
+            url:'./data.json'
+        }).then(res=>{
+            console.log(res);
+        }).catch(err=>{
+            console.log(err);
+        }).finally(()=>{
+            console.log('最后执行的操作');
+        })
+        
+        function getImage(imageurl){
+            const Img = new Promise((resolve,reject)=>{
+                const imgObj = new Image(); //new Option()
+                imgObj.onload = ()=>{
+                    resolve(imgObj);
+                }
+                imgObj.onerror = ()=>{
+                    reject(new Error(`找不到图片,图片路径为：${imageurl}`));
+                }
+                imgObj.src = imageurl;
+            });
+            return Img;
+        }
+
+        const imgdata = [{
+            url:'http://uploads.oh100.com/allimg/1709/117-1FZ5102542-52.jpg'
+        },{
+            url:'http://pic22.nipic.com/20120714/9622064_105642209176_2.jpg'
+        },{
+            url:'http://pic36.nipic.com/20131213/6704106_223232205107_2.png'
+        }]
+
+        let arr = imgdata.map(item=>{
+            return getImage(item.url);
+        })
+        Promise.all(arr).then(data=>{
+            data.forEach(img=>{
+                document.body.appendChild(img);
+            })
+        },error=>{
+            console.log(error);
+        })
+
+        //Promise.all([promise1,promise2]).then(data=>[promise1的resolve的返回值,promise2的resolve的返回值])
+
+        
+    </script>
+</body>
+</html>

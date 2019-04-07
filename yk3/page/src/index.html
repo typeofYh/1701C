@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>微故事</header>
+        <main class="main">
+            
+        </main>
+        <footer>
+            <a href="./group.html">社群</a>
+            <a href="./group.html">add</a>
+            <a href="./story.html" class="active">微故事</a>
+            <a href="./my.html">我的</a>
+        </footer>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const main = document.querySelector('.main');
+        axios.get('/api/list').then(res=>{
+            render(res.data.list)
+        })
+        function render(data){
+            main.innerHTML = data.map(item=>{
+                return `<a herf="${item.iframe_src}">
+                    <dl>
+                        <dt><img src="./image/banner1.png" /></dt>
+                        <dd>
+                            <p>${item.title}</p>
+                            <span>${item.brief}</span>
+                        </dd>
+                    </dl>
+                </a>`
+            }).join('');
+        }
+   
+    </script>
+</body>
+</html>

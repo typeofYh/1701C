@@ -1,0 +1,72 @@
+属性：数据数据  
+        {
+            value
+            writeable
+            configable
+            enumerable
+        }
+      访问器属性
+        {
+            get
+            set
+        }
+
+功能:比较两个值是否完全相等
+Object.is()
+
+语法:Object.assign(o1,o2,o3)
+功能:根据参数合并对象，默认修改第一个参数返回第一个参数
+返回值：对象
+
+语法:Object.getPrototypeOf(object)
+功能:获取原型对象
+
+语法:Object.setPrototypeOf(object)
+功能:设置原型对象
+
+
+
+** promise
+1.让异步操作更合理
+Promise是一个构造函数，通过new关键字来调用
+2.Promise有三种状态 pending（进行中）、fulfilled（已成功）和rejected（已失败）
+3.Promise不受外部操作的影响 pending->fulfilled pending->rejected
+
+4.声明promise对象
+new Promise((resolve,reject)=>{
+    resolve:成功执行的操作
+    reject:失败执行的操作
+})
+
+
+5. Promise.prototype.then **
+功能:为 Promise 实例添加状态改变时的回调函数
+1.resolve  2.reject
+
+6. Promise.prototype.catch **
+功能：捕捉错误信息
+
+7. Promise.prototype.finally
+不管 Promise 对象最后状态如何都会执行
+
+8.Promise.all([p1,p2,p3,p4]) **
+接受一个数组会把多个promise对象封装成一个promise对象返回
+只要有一个promise对象错误就不会执行成功的函数所有的都成功才会执行成功的函数
+
+
+**  async 函数
+使得异步操作变得更加方便。
+可以配合await关键字来等待异步操作执行完成
+
+
+** class
+用来定义构造函数
+class 函数名{
+
+}
+
+let 函数名 = class{
+
+}
+
+1.class声明的函数必须通过new关键字来调用

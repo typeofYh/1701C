@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function Dialoga(obj){
+            this.init();
+        }
+        Dialoga.prototype.init = function(){
+
+        }     
+
+        new Dialoga({
+            title:'确定要删除码？'
+        });
+
+        class Dialog{
+            constructor(options){  //原型构造函数
+                console.log(options);
+                console.log(this); //实例对像
+                //写属性
+                this.init();
+            }
+            //写方法
+            init(){
+                console.log('init');
+            }
+        }
+
+
+       new Dialog({
+           title:'确定要删除码？',
+           btns:'确定'
+       });
+    </script>
+</body>
+</html>

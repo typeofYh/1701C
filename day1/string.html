@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        const Mock = {
+            mock(obj){
+                // console.log(obj);
+                //['string|1-10','aa|10']
+                let res = {};
+                Object.keys(obj).forEach(function(item){
+                    let [key,term] = item.split('|'); //['string','1-10']
+                    let flag = term.includes('-');
+                    let value = obj[item];
+                    if(flag){
+                        //1-10 min=1 max=10
+                        let [min,max] = term.split('-'); //[1,10]
+                        //字符串出现的次数 数字直接返回
+                        let count = this.getRandom(min*1,max*1);
+                        value = typeof value === 'string' ? value.repeat(count) : count;
+                    }else{
+                        let count = term;
+                        value = value.repeat(count);
+                    }
+                    res[key] = value;
+                },this);
+                return res;
+            },
+            getRandom(min,max){
+               return Math.floor(Math.random()*(max-min+1)+min)
+            }
+        }
+
+        let obj = Mock.mock({
+            //属性值为数字类型返回1-10之间的随机数
+            //属性值字符串类型返回字串出现1-10之间随机次
+            'string|1-10':1,
+            'aa|3-10':'a'
+        })
+        //{string:1,aa:11111}
+        console.log(obj);
+
+        let open = true;
+        let str1 = `<button>${open?`开`:`关`}</button>`;
+
+        document.write(str1);
+
+        document.querySelector('button').onclick = function(){
+            open = !open;
+            this.innerHTML = `${open?`开`:`关`}`
+        }
+    </script>
+</body>
+</html>

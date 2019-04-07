@@ -1,0 +1,9 @@
+http 是nodejs内置模块
+
+resquest : 请求  req
+response : 响应  res
+
+node-dev : dev development 开发环境 
+
+1. 全局安装
+npm i node-dev -g

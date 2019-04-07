@@ -1,0 +1,23 @@
+npm 包管理工具
+
+npm root -g 全局安装地址
+NODE_PATH环境变量的地址
+
+
+1. 查看当前目录有没有 package.json 包描述文件
+2. 没有 : 手动生成package.json  npm init
+package.json
+    packagename:包名
+    version:版本号 1.0.0  
+    description:描述 
+    entry point:入口文件 默认index.js
+    test command:测试指令
+    git repository:git仓库地址
+    keywords:关键字 
+    author:作者
+    license:协议 isc
+3.npm install|i 要安装的包名 -g --global|-S --save(默认)|-D --save-dev
+4.npm uninstall 要卸载的包 -g -S -D 
+
+-S dependencies  正式环境依赖 
+-D devDependencies  dev=>development 开发环境依赖
